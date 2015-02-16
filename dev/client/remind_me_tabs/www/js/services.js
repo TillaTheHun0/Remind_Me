@@ -10,30 +10,6 @@ angular.module('RemindMe.services', ['ngResource'])
     //rest of crud operations
   });
 
-  //whole document
-  var User = QueryDoc.get();
-
-  //somehow make User just one document instead of array
-
-  return {
-    all: function(){
-      return User;
-    },
-    remove: function(todo){
-      todos.splice(todos.indexOf(todo), 1);
-    },
-    getTodos: function(){
-      return User[0].todos;
-    },
-    getTodo: function(todoId){
-      for (var i = 0; i < User.todos.length; i++) {
-        if (User.todos[i].id === parseInt(todoId)) {
-          return User.todos[i];
-        }
-      }
-      return null;
-    }
-  }
 })
 
 .factory('Todos', function() {
