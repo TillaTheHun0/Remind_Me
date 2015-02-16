@@ -1,0 +1,34 @@
+<!-- each page must have view -->
+<ion-view view-title="Todos">
+
+  <!-- nav bar button -->
+  <ion-nav-buttons side= "right">
+    <button class= "button button-clear icon ion-ios7-plus-empty"
+    ng-click="newTodo()">
+    </button>
+  </ion-nav-buttons>
+
+  <!-- content for todos -->
+  <ion-content>
+    <!--
+    <div class="list">
+      <a class="item item-avatar" ng-repeat="todo in todos"
+      href="#/tab/todos/{{todo.id}}">
+        <img src={{todo.loCal}}>
+        <h2>{{todo.task}}</h2>
+        <p>{{todo.time}}</p>
+      </a>
+    </div>
+  -->
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right"
+      ng-repeat= "todo in todos" href="#/tab/todos/{{todo.id}}">
+        <img ng-src="{{todo.loCal}}">
+        <h2>{{todo.task}}</h2>
+        <p>{{todo.time}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  
+</ion-view>

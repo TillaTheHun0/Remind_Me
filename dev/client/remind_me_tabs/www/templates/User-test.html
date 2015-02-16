@@ -1,0 +1,12 @@
+<ion-view view-title ="User">
+  <ion-content>
+    {{user}}
+    <ion-list class="item-remove-animate item-avatar item-icon-right">
+      <ion-item ng-repeat = "todo in todos">
+        <h2>{{todo.task}}</h2>
+        <p>{{todo.date}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      <ion-item>
+    </ion-list>
+</ion-content>
+</ion-view>

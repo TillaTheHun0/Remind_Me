@@ -1,0 +1,25 @@
+<!-- used to be tab-friends -->
+<ion-view view-title="Locations">
+  <ion-content>
+    <div class="list card" ng-repeat="location in locations"
+    type="item-text-wrap">
+      <div class="item item-divider">
+        {{location.name}}
+      </div>
+      <div class="item item-body">
+        <a href="#/tab/locations/{{location.id}}">
+          <div>2 tasks</div>
+        </a>
+      </div>
+    </div>
+    <!--
+    <ion-list>
+      <ion-item class="item-avatar" ng-repeat="location in locations"
+      type="item-text-wrap" href="#/tab/locations/{{location.id}}">
+        <img ng-src="{{location.face}}">
+        <h2>{{location.name}}</h2>
+      </ion-item>
+    </ion-list>
+  -->
+  </ion-content>
+</ion-view>
