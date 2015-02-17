@@ -2,14 +2,8 @@ angular.module('RemindMe.services', ['ngResource'])
 
 //add actual factory
 .factory('UserData', function($resource){
-  //change this to just resource and differet CRUD operations
-  //rest of work done in controller (including queries)
-  //change to 'http://localhost:8081/api/:username'
-  var QueryDoc = $resource('http://localhost:8081/api/tilla', {},{
-    get: { method:'GET', params:{username:'tilla'}, isArray:true }
-    //rest of crud operations
-  });
-
+  //returns resource to RESTful API
+  return $resource('http://localhost:8081/api/:username/:todo_id');
 })
 
 .factory('Todos', function() {

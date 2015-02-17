@@ -1,13 +1,23 @@
 angular.module('RemindMe.controllers', ['RemindMe.services'])
 
 .controller('UserCtrl', ['$scope', 'UserData', function($scope, UserData){
-  //something here not setting object
-  
+  //params for query. change to :username eventually
+  //to use locally stored username
+  var params = {username:'tilla'};
+
+  UserData.get(params).$promise.then(function(doc){
+    $scope.user = doc;
+    $scope.todos = doc.todos;
+  });
+
+  //console.log($scope.user);
+  /*
   UserData.all().$promise.then(function(data){
     console.log(data[0]);
     $scope.user = data[0];
     $scope.todos = data[0].todos;
   });
+  */
 
 }])
 

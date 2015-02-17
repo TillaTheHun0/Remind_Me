@@ -1,10 +1,20 @@
 <ion-view view-title ="User">
+
+  <ion-nav-buttons side= "right">
+    <button class= "button button-clear icon ion-ios7-plus-empty"
+    ng-click="newTodo()">
+    </button>
+  </ion-nav-buttons>
+
   <ion-content>
-    {{user}}
-    <ion-list class="item-remove-animate item-avatar item-icon-right">
-      <ion-item ng-repeat = "todo in todos">
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right"
+      ng-repeat = "todo in todos">
+      <!--dummy image. eventually have image in databse and defult image
+          of app icon or something-->
+        <img ng-src="https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png">
         <h2>{{todo.task}}</h2>
-        <p>{{todo.date}}</p>
+        <p>{{todo.push_notif}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       <ion-item>
     </ion-list>

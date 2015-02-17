@@ -81,8 +81,8 @@ router.route('/:username')
       if(err){
         res.send(err);
       }
-      res.json(user);
-      console.log('Sending data: ' + user );
+      res.json(user[0]);//maybe take [0] out
+      console.log('Sending data: ' + user[0] );
     });
 
   })//end get operation

@@ -10,16 +10,6 @@
 
   <!-- content for todos -->
   <ion-content>
-    <!--
-    <div class="list">
-      <a class="item item-avatar" ng-repeat="todo in todos"
-      href="#/tab/todos/{{todo.id}}">
-        <img src={{todo.loCal}}>
-        <h2>{{todo.task}}</h2>
-        <p>{{todo.time}}</p>
-      </a>
-    </div>
-  -->
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right"
       ng-repeat= "todo in todos" href="#/tab/todos/{{todo.id}}">
@@ -30,5 +20,5 @@
       </ion-item>
     </ion-list>
   </ion-content>
-  
+
 </ion-view>
