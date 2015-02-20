@@ -12,8 +12,10 @@
   <ion-content>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right"
-      ng-repeat= "todo in todos" href="#/tab/todos/{{todo.id}}">
-        <img ng-src="{{todo.loCal}}">
+      ng-repeat= "todo in todos" href="#/tab/todos/{{todo._id}}">
+      <!--dummy image. eventually have image in databse and defult image
+          of app icon or something-->
+        <img ng-src="https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png">
         <h2>{{todo.task}}</h2>
         <p>{{todo.time}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>

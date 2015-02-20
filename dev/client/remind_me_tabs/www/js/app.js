@@ -33,25 +33,29 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
     .state('tab', {
     url: "/tab",
     abstract: true,
+    resolve: {
+      //service
+      UserDoc: 'UserData',
+
+      //function that resolves to return of service function
+      User: function(UserDoc){
+        return UserDoc.get().$promise;
+      }
+    },
     templateUrl: "templates/tabs.html"
   })
 
   // Each tab has its own nav history stack:
 
-  .state('tab.user' , {
-    url: '/user',
-    views: {
-      'tab-user': {
-        templateUrl: 'templates/User-test.html',
-        controller: 'UserCtrl'
-      }
-    }
-  })
-
   .state('tab.todos', {
     url: '/todos',
+    resolve: {
+      todos: function(User){
+        todos = User.todos;
+      }
+    },
     views: {
-      'tab-todos': {
+      'tab-todos':{
         templateUrl: 'templates/tab-todos.html',
         controller: 'TodosCtrl'
       }
@@ -59,7 +63,19 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
   })
 
   .state('tab.todo-detail', {
-    url: '/todos/:todoId',
+    url: '/todos/:todo_id',
+    resolve: {
+      todo: function(User, $stateParams){
+          for (var i = 0; i < User.todos.length; i++) {
+            //console.log(User.todos[i]._id);
+            //console.log($stateParams.todo_id);
+            if (User.todos[i]._id == $stateParams.todo_id) {
+              //console.log("match");
+              todo = User.todos[i];
+            }
+          }
+        }
+    },
     views: {
       'tab-todos': {
         templateUrl: 'templates/todo-detail.html',

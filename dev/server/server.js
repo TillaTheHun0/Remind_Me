@@ -82,7 +82,7 @@ router.route('/:username')
         res.send(err);
       }
       res.json(user[0]);//maybe take [0] out
-      console.log('Sending data: ' + user[0] );
+      console.log('Sending data: ' + user[0]);
     });
 
   })//end get operation
@@ -120,6 +120,22 @@ router.route('/:username')
   });
 //routes for specific todos
 router.route('/:username/:todo_id')
+  /*
+  //get singular todo MUST FINISH
+  .get(function(req,res){
+    var id = new mongoose.Types.ObjectId(req.params.todo_id);
+    //in query use req.params when hooked to frontend
+    User.find({ username: req.params.username}, function(err,user){
+      if(err){
+        res.send(err);
+      }
+      var todo = user.todos;
+      res.json(todo);
+      console.log('Sending data: ' + todo);
+    });
+
+  })//end get operation
+  */
 
   //updating specific todo
   .put(function(req,res){
