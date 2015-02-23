@@ -31,25 +31,6 @@ angular.module('RemindMe.services', ['ngResource'])
   */
 })
 
-/*
-.factory('UserDoc', ['UserData',
-  function(UserData){
-    var User = {};
-    var params = {username:'tilla'};
-
-    UserData.get(params).$promise.then(function(doc){
-      User = doc;
-    });
-
-    return {
-      all: function() {
-        return User;
-      }
-    }
-  }
-])
-*/
-
 .factory('Todos', function() {
   // Might use a resource here that returns a JSON array
 

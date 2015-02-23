@@ -6,8 +6,6 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
   //$scope.user = user;
   $scope.todos = todos;
   /*
-  var params = {username:'tilla'};
-
 
   UserData.get(params).$promise.then(function(doc){
     $scope.user = doc;

@@ -1,9 +1,20 @@
 <ion-view view-title="{{todo.task}}">
-  <ion-content class="padding">
-    <ion-list>
-      <ion-item class="item divider">{{todo}}</ion-item>
-      <ion-item
-    </ion-list>
 
+  <ion-nav-buttons side= "right">
+    <button class= "button button-clear"ng-click="editTodo()">
+      Edit
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <ion-list ng-controller= "TodoDetailCtrl"
+              can-swipe = "listCanSwipe">
+      <ion-item class="item divider">
+        <ion-option-button class="button-info" ng-click="editTodo()">
+              Edit
+        </ion-option-button>
+        {{todo.task}}
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
