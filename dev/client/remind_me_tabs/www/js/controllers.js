@@ -1,20 +1,46 @@
 angular.module('RemindMe.controllers', ['RemindMe.services'])
 
-.controller('TodosCtrl', ['$scope', function($scope){
+.controller('TodosCtrl', ['$scope', '$state', function($scope, $state){
   //params for query. change to :username eventually
   //to use locally stored username
-  //$scope.user = user;
-  $scope.todos = todos;
-  /*
+  $scope.create = function(){
+    $state.go('tab.newtodo');
+  };
 
-  UserData.get(params).$promise.then(function(doc){
-    $scope.user = doc;
-    $scope.todos = doc.todos;
-  });
-  */
+  $scope.todos = todos;
 }])
 
-.controller('TodoDetailCtrl', function($scope, $stateParams) {
+.controller('NewTodoCtrl', function($scope, $state, UserDoc){
+
+  $scope.todo = {
+    task:'',
+    date: '',
+    long: '35',
+    lat: '35',
+    completed: false,
+    push_notif: false
+  };
+
+  $scope.close = function(){
+    //ad logic if stuff was entered to ask 'are you sure?'
+    $state.go('tab.todos');
+  };
+
+  $scope.createTodo = function(){
+    //add new todo using rest api (PUT)
+    UserDoc.update($scope.todo);
+    $state.go('tab.todos');
+  };
+
+})
+
+.controller('TodoDetailCtrl', function($scope, $stateParams,$state) {
+  /*
+  $scope.editTodo = function(){
+    $state.go('tab.edittodo');
+  };
+  */
+
   $scope.todo = todo;
 })
 

@@ -7,14 +7,12 @@
   </ion-nav-buttons>
 
   <ion-content>
-    <ion-list ng-controller= "TodoDetailCtrl"
-              can-swipe = "listCanSwipe">
-      <ion-item class="item divider">
-        <ion-option-button class="button-info" ng-click="editTodo()">
-              Edit
-        </ion-option-button>
-        {{todo.task}}
-      </ion-item>
+    <ion-list>
+      <ion-item>{{todo.task}}</ion-item>
+      <ion-item class= "item-divider"></ion-item>
+      <ion-item>{{todo.date}}</ion-item>
+      <!--display map here of location -->
     </ion-list>
+    map down here of location
   </ion-content>
 </ion-view>

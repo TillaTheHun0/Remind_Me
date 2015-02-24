@@ -35,10 +35,10 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
     abstract: true,
     resolve: {
       //service
-      UserDoc: 'UserData',
+      //UserDoc: 'UserDoc',
 
       //function that resolves to return of service function
-      User: function(UserDoc){
+      User: function(UserDoc){//inject service
         return UserDoc.get().$promise;
       }
     },
@@ -58,6 +58,19 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
       'tab-todos':{
         templateUrl: 'templates/tab-todos.html',
         controller: 'TodosCtrl'
+      }
+    }
+  })
+
+  .state('tab.newtodo', {
+    url: '/todos/newtodo',
+    resolve: {
+      
+    },
+    views: {
+      'tab-todos':{
+        templateUrl: 'templates/new-todo.html',
+        controller: 'NewTodoCtrl'
       }
     }
   })
@@ -83,28 +96,6 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
       }
     }
   })
-
-  /*unused states (chat)
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
-  */
 
   .state('tab.location', {
       url: '/locations',

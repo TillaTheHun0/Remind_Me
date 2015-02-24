@@ -5,6 +5,7 @@
 //packages
 var express = require('express');
 var app = express(); //define app is using express
+var cors = require('cors');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Todo = require('./app/models/todo');//imports todo schema
@@ -16,12 +17,16 @@ mongoose.connect('mongodb://localhost/test'); //connect to mongoDB database
 //let us get data from Post CRUD operation
 app.use(bodyParser.urlencoded( {extended: true} ));
 app.use(bodyParser.json());
+app.use(cors());//CORS FUNCTIONALITY
+/*
 //added for CORS functionality
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Headers",
+  "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+*/
 
 var port = process.env.PORT ||  8081; //set port to listen on
 

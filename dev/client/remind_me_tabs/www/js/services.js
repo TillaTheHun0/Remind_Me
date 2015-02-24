@@ -1,34 +1,14 @@
 angular.module('RemindMe.services', ['ngResource'])
 
 //add actual factory
-.service('UserData', function($resource){
+.service('UserDoc', function($resource){
   //returns resource to RESTful API
-  //var resource = $resource('http://localhost:8081/api/:username/:todo_id');
-
-  //var promise = resource.get({username: 'tilla'});
-
-  return $resource('http://localhost:8081/api/:username/:todo_id', {username: 'tilla'});
-
-  /*
-  return{
-    all: function(){
-        return promise.$promise.then(function(doc){
-          return doc;
-        });
-      },
-    todos: function(){
-      return User.todos;
-    },
-    todo: function(todo_id){
-      for (var i = 0; i < User.todos.length; i++) {
-        if (User.todos[i].id === parseInt(todo_id)) {
-          return User.todos[i];
-        }
-      }
-      return null;
-    }
-  }
-  */
+  return $resource('http://localhost:8081/api/:username/:todo_id',
+  {username: 'tilla'},
+  {
+    //later change to @username & @todo_id
+    update: {method:'PUT'}
+  });
 })
 
 .factory('Todos', function() {
