@@ -124,24 +124,7 @@ router.route('/:username')
       );
   });
 //routes for specific todos
-router.route('/:username/:todo_id')
-  /*
-  //get singular todo MUST FINISH
-  .get(function(req,res){
-    var id = new mongoose.Types.ObjectId(req.params.todo_id);
-    //in query use req.params when hooked to frontend
-    User.find({ username: req.params.username}, function(err,user){
-      if(err){
-        res.send(err);
-      }
-      var todo = user.todos;
-      res.json(todo);
-      console.log('Sending data: ' + todo);
-    });
-
-  })//end get operation
-  */
-
+router.route('/:username/:_id')
   //updating specific todo
   .put(function(req,res){
       //create todo to obey schema (hacky)
@@ -156,7 +139,7 @@ router.route('/:username/:todo_id')
         push_notif: req.body.push_notif
       });
       //cast id to mongoDB ObjectId
-      var id = new mongoose.Types.ObjectId(req.body.todo_id);
+      var id = new mongoose.Types.ObjectId(req.body._id);
       //query statement
       User.findOneAndUpdate(
         //query by username and match element by casted id
@@ -187,7 +170,8 @@ router.route('/:username/:todo_id')
   //delete todo
   .delete(function(req,res){
     //cast id to mongoDB ObjectId
-    var id = new mongoose.Types.ObjectId(req.body.todo_id);
+    console.log("About to delete todo" + req.params._id);
+    var id = new mongoose.Types.ObjectId(req.params._id);
     User.findOneAndUpdate(
       { username: req.params.username},
       {
