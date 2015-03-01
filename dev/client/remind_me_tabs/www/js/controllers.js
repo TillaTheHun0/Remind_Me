@@ -38,7 +38,7 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
   $scope.createTodo = function(todos){
     //add new todo using rest api (PUT)
     UserDoc.update($scope.todo);
-    $scope.todos.push($scope.todo);
+    //$scope.todos.push($scope.todo);
     //update scope of parent somehow
     $state.go('tab.todos');
   };
