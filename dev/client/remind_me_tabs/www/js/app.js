@@ -34,10 +34,7 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
     url: "/tab",
     abstract: true,
     resolve: {
-      //service
-      //UserDoc: 'UserDoc',
-
-      //function that resolves to return of service function
+      //returns query promise
       User: function(UserDoc){//inject service
         return UserDoc.get().$promise;
       }
@@ -64,9 +61,6 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
 
   .state('tab.newtodo', {
     url: '/todos/newtodo',
-    resolve: {
-      
-    },
     views: {
       'tab-todos':{
         templateUrl: 'templates/new-todo.html',
@@ -76,14 +70,11 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
   })
 
   .state('tab.todo-detail', {
-    url: '/todos/:todo_id',
+    url: '/todos/:_id',
     resolve: {
       todo: function(User, $stateParams){
           for (var i = 0; i < User.todos.length; i++) {
-            //console.log(User.todos[i]._id);
-            //console.log($stateParams.todo_id);
-            if (User.todos[i]._id == $stateParams.todo_id) {
-              //console.log("match");
+            if (User.todos[i]._id == $stateParams._id) {
               todo = User.todos[i];
             }
           }
@@ -96,6 +87,18 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
       }
     }
   })
+
+/*
+  .state('tab.todo-edit', {
+    url: '/todos/:_id/edit',
+    views: {
+      'tab-todos': {
+        templateUrl: 'templates/todo-edit.html',
+        controller: 'TodoEditCtrl'
+      }
+    }
+  })
+  */
 
   .state('tab.location', {
       url: '/locations',

@@ -22,26 +22,17 @@
         </ion-item>
         <ion-item class= "item-divider"></ion-item>
 
-        <ion-item class="item-icon-left item-toggle">
+        <ion-item class="item-icon-left">
           <i class="icon ion-map"></i>
-          Location
-          <label class="toggle toggle-assertive">
-             <input type="checkbox">
-             <div class="track">
-               <div class="handle"></div>
-             </div>
-           </label>
+          <ion-toggle toggle-class="toggle-info">
+            Location
+          </ion-toggle>
         </ion-item>
         <ion-item class= "item-divider"></ion-item>
-
-        <ion-item class="item-toggle">
-            Push Notification
-            <label class="toggle toggle-assertive">
-               <input type="checkbox" ng-model="todo.push_notif">
-               <div class="track">
-                 <div class="handle"></div>
-               </div>
-            </label>
+        <ion-item>
+            <ion-toggle ng-model="todo.push_notif" toggle-class="toggle-info">
+              Push Notification
+            </ion-toggle>
         </ion-item>
       </ion-list>
       <div>

@@ -1,18 +1,44 @@
 <ion-view view-title="{{todo.task}}">
-
   <ion-nav-buttons side= "right">
-    <button class= "button button-clear"ng-click="editTodo()">
+    <button ng-hide= "editEnabled"
+            class= "button button-clear"ng-click="editEnabled = !editEnabled">
       Edit
+    </button>
+    <button ng-show= "editEnabled"
+            class= "button button-clear"ng-click="editEnabled = !editEnabled">
+      Save
     </button>
   </ion-nav-buttons>
 
   <ion-content>
-    <ion-list>
-      <ion-item>{{todo.task}}</ion-item>
-      <ion-item class= "item-divider"></ion-item>
-      <ion-item>{{todo.date}}</ion-item>
-      <!--display map here of location -->
-    </ion-list>
-    map down here of location
+    <!--
+    <div ng-hide="editEnabled" class="list card">
+
+      <div class="item item-avatar">
+        <img src="https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png">
+        <h2>{{todo.task}}</h2>
+        <p type="date">{{todo.date}}</p>
+      </div>
+
+      <div class="item item-body">
+        <img class="full-image" src="https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png">
+      </div>
+      <a ng-click="editEnabled = !editEnabled">switch</a>
+    </div>
+  -->
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png">
+        <input ng-model="todo.task">
+        <input type="datetime"ng-model="todo.date">
+      </div>
+
+      <div class="item item-body">
+        <!--display map here of location -->
+        <img class="full-image" src="https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png">
+      </div>
+    </div>
+    <!--display map here of location -->
+    {{todo.completed}}
   </ion-content>
 </ion-view>

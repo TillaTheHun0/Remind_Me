@@ -10,11 +10,18 @@
 
   <!-- content for todos -->
   <ion-content>
-    <ion-list>
+    <ion-list can-swipe"listCanSwipe">
       <ion-item class="item-remove-animate item-avatar item-icon-right"
       ng-repeat= "todo in todos" href="#/tab/todos/{{todo._id}}">
-      <!--dummy image. eventually have image in databse and defult image
-          of app icon or something-->
+
+        <ion-option-button class="button-info" ng-click="remove(todo)">
+          <i class="icon assertive ion-close-round"></i>
+        </ion-option-button>
+        <ion-option-button ng-click="completed(todo)">
+          <i class="icon positive ion-checkmark-circled"></i>
+        </ion-option-button>
+        <!--dummy image. eventually have image in databse and defult image
+            of app icon or something-->
         <img ng-src="https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png">
         <h2>{{todo.task}}</h2>
         <p>{{todo.time}}</p>
@@ -23,4 +30,13 @@
     </ion-list>
   </ion-content>
 
+  <!-- bar that always displays at bottom -->
+  <ion-footer-bar>
+    <div class= "button-bar">
+      <button
+      class="button button-clear button-positive">
+        Show Completed
+      </button>
+    </div>
+  </ion-footer-bar>
 </ion-view>
