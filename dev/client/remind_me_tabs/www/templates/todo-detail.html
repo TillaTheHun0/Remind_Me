@@ -35,7 +35,9 @@
 
       <div class="item item-body">
         <!--display map here of location -->
-        <img class="full-image" src="https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png">
+        <div ng-controller="MapCtrl">
+          <map on-create="mapCreated(map)"></map>
+        </div>
       </div>
     </div>
     <!--display map here of location -->

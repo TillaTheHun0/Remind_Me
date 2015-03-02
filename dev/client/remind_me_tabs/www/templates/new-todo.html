@@ -24,9 +24,12 @@
 
         <ion-item class="item-icon-left">
           <i class="icon ion-map"></i>
-          <ion-toggle toggle-class="toggle-info">
+          <ion-toggle ng-model="addLocation" toggle-class="toggle-info">
             Location
           </ion-toggle>
+        </ion-item>
+        <ion-item ng-show="addLocation">
+          hello
         </ion-item>
         <ion-item class= "item-divider"></ion-item>
         <ion-item>

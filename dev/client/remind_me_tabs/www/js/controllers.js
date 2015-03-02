@@ -21,6 +21,19 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
 
 }])
 
+.controller('TodoDetailCtrl', function($scope, $location) {
+  $scope.todo = todo;
+
+  //date is sent from server as string
+  //so must convert to date for displaying
+  //$scope.date = new Date(todo.date);
+
+  $scope.edit = function(){
+    console.log($location.path() + '/edit')
+    $location.path($location.path() + '/edit');
+  }
+})
+
 .controller('NewTodoCtrl', function($scope, $state, UserDoc){//inject service
   $scope.todo = {
     task:'',
@@ -30,6 +43,8 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
     completed: false,
     push_notif: false
   };
+  $scope.addLocation = false;
+  
   $scope.close = function(){
     //ad logic if stuff was entered to ask 'are you sure?'
     $state.go('tab.todos');
@@ -45,19 +60,32 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
 
 })
 
-.controller('TodoDetailCtrl', function($scope, $location) {
-  $scope.todo = todo;
+.controller('MapCtrl', function($scope, $ionicLoading) {
+  $scope.mapCreated = function(map) {
+    console.log("map created");
+    $scope.map = map;
+  };
 
-  //date is sent from server as string
-  //so must convert to date for displaying
-  //$scope.date = new Date(todo.date);
+  $scope.centerOnMe = function () {
+    console.log("Centering");
+    if (!$scope.map) {
+      return;
+    }
 
-  $scope.edit = function(){
-    console.log($location.path() + '/edit')
-    $location.path($location.path() + '/edit');
-  }
+    $scope.loading = $ionicLoading.show({
+      content: 'Getting current location...',
+      showBackdrop: false
+    });
+
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      console.log('Got pos', pos);
+      $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+      $scope.loading.hide();
+    }, function (error) {
+      alert('Unable to get location: ' + error.message);
+    });
+  };
 })
-
 /*
 .controller('TodoEditCtrl', function($scope, $state){
   $scope.todo = todo;
