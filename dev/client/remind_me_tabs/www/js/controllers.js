@@ -43,8 +43,9 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
     completed: false,
     push_notif: false
   };
+
   $scope.addLocation = false;
-  
+
   $scope.close = function(){
     //ad logic if stuff was entered to ask 'are you sure?'
     $state.go('tab.todos');
@@ -62,7 +63,7 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
 
 .controller('MapCtrl', function($scope, $ionicLoading) {
   $scope.mapCreated = function(map) {
-    console.log("map created");
+    console.log("Map Created");
     $scope.map = map;
   };
 
@@ -78,9 +79,10 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
     });
 
     navigator.geolocation.getCurrentPosition(function (pos) {
+      //is the current coordinates
       console.log('Got pos', pos);
       $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-      $scope.loading.hide();
+      $ionicLoading.hide();
     }, function (error) {
       alert('Unable to get location: ' + error.message);
     });

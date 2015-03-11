@@ -1,4 +1,4 @@
-<ion-view view-title="New Todo">
+<ion-view hide-back-button= "true" view-title="New Todo">
 
   <ion-nav-buttons side= "right">
     <button class= "button button-clear icon ion-ios7-close-empty"
@@ -20,24 +20,27 @@
           <span class="input-label">Date</span>
           <input type="date" ng-model="todo.date">
         </ion-item>
-        <ion-item class= "item-divider"></ion-item>
-
-        <ion-item class="item-icon-left">
-          <i class="icon ion-map"></i>
-          <ion-toggle ng-model="addLocation" toggle-class="toggle-info">
-            Location
-          </ion-toggle>
-        </ion-item>
-        <ion-item ng-show="addLocation">
-          hello
-        </ion-item>
-        <ion-item class= "item-divider"></ion-item>
-        <ion-item>
-            <ion-toggle ng-model="todo.push_notif" toggle-class="toggle-info">
-              Push Notification
-            </ion-toggle>
-        </ion-item>
       </ion-list>
+      <div class="item item-icon-left">
+        <i class="icon ion-map"></i>
+        <ion-toggle ng-model="addLocation" toggle-class="toggle-info">
+          Location
+        </ion-toggle>
+      </div>
+      <!--toggles for location-->
+      <div class = "item item-icon-left" ng-show="addLocation">
+        <!--click to map page-->
+        <a href="#/tab/locations">
+          <i class="icon ion-ios7-navigate-outline"></i>
+        </a>
+        Set Location
+      </div>
+      <div class= "item item-divider"></div>
+      <div class= "item">
+          <ion-toggle ng-model="todo.push_notif" toggle-class="toggle-info">
+            Push Notification
+          </ion-toggle>
+      </div>
       <div>
         <button ng-click="createTodo()"
         class="button button-block button-positive">

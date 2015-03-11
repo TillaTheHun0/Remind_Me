@@ -1,5 +1,16 @@
 <!-- used to be tab-friends -->
-<ion-view view-title="Locations">
+<ion-view ng-controller="MapCtrl" view-title="Locations">
+
+  <ion-nav-buttons side="right">
+    <a ng-click="centerOnMe()" class="button button-icon icon ion-navigate"></a>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <map on-create="mapCreated(map)"></map>
+  </ion-content>
+
+  <!--
   <ion-content>
     <div class="list card" ng-repeat="location in locations"
     type="item-text-wrap">
@@ -7,19 +18,11 @@
         {{location.name}}
       </div>
       <div class="item item-body">
-        <a href="#/tab/locations/{{location.id}}">
+        <a nav-direction="forward"href="#/tab/locations/{{location.id}}">
           <div>2 tasks</div>
         </a>
       </div>
     </div>
-    <!--
-    <ion-list>
-      <ion-item class="item-avatar" ng-repeat="location in locations"
-      type="item-text-wrap" href="#/tab/locations/{{location.id}}">
-        <img ng-src="{{location.face}}">
-        <h2>{{location.name}}</h2>
-      </ion-item>
-    </ion-list>
-  -->
   </ion-content>
+-->
 </ion-view>
