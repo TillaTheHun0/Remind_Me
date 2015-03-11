@@ -3,7 +3,7 @@ angular.module('RemindMe.services', ['ngResource'])
 //add actual factory
 .service('UserDoc', function($resource){
   //returns resource to RESTful API
-  return $resource('http://localhost:8081/api/:username/:_id',
+  return $resource('https://polar-thicket-8181.herokuapp.com/api/:username/:_id',
   {username: 'tilla'},
   {
     //later change to @username & @todo_id
