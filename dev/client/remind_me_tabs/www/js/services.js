@@ -7,6 +7,7 @@ angular.module('RemindMe.services', ['ngResource'])
   {username: 'tilla'},
   {
     //later change to @username & @todo_id
+    create: {method:'PUT'},
     update: {method:'PUT'},
     remove: {method:'DELETE'}
   });

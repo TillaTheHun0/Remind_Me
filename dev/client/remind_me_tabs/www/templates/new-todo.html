@@ -28,12 +28,10 @@
         </ion-toggle>
       </div>
       <!--toggles for location-->
-      <div class = "item item-icon-left" ng-show="addLocation">
-        <!--click to map page-->
-        <a href="#/tab/locations">
-          <i class="icon ion-ios7-navigate-outline"></i>
-        </a>
-        Set Location
+      <div class = "item item-input" ng-show="addLocation">
+        <!--Places Search Bar-->
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search">
       </div>
       <div class= "item item-divider"></div>
       <div class= "item">
@@ -47,11 +45,6 @@
           Create
         </button>
       </div>
-      <!--testing data binding
-      <p>{{todo.task}}</p>
-      <p>{{todo.push_notif}}</p>
-      <p>{{todo.date}}</p>
-      -->
   </ion-content>
 
 </ion-view>

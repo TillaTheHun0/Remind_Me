@@ -37,6 +37,9 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
       //returns query promise
       User: function(UserDoc){//inject service
         return UserDoc.get().$promise;
+      },
+      todos: function(User){
+        todos = User.todos;
       }
     },
     templateUrl: "templates/tabs.html"
@@ -46,11 +49,6 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
 
   .state('tab.todos', {
     url: '/todos',
-    resolve: {
-      todos: function(User){
-        todos = User.todos;
-      }
-    },
     views: {
       'tab-todos':{
         templateUrl: 'templates/tab-todos.html',

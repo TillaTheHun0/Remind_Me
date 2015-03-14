@@ -10,7 +10,13 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
   };
 
   $scope.completed = function(todo){
-
+      todo.completed = true;
+      var id = todo._id
+      //update todo on server as completed
+      UserDoc.update({_id:id}, todo);
+      console.log(todo.task + " marked as completed");
+      //remove from todos
+      $scope.todos.splice($scope.todos.indexOf(todo), 1);
   };
 
   $scope.remove = function(todo){
@@ -35,6 +41,7 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
 })
 
 .controller('NewTodoCtrl', function($scope, $state, UserDoc){//inject service
+  $scope.todos = todos;
   $scope.todo = {
     task:'',
     date: '',
@@ -53,8 +60,8 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
 
   $scope.createTodo = function(todos){
     //add new todo using rest api (PUT)
-    UserDoc.update($scope.todo);
-    //$scope.todos.push($scope.todo);
+    UserDoc.create($scope.todo);
+    $scope.todos.push($scope.todo);
     //update scope of parent somehow
     $state.go('tab.todos');
   };

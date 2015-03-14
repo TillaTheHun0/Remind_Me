@@ -7,22 +7,6 @@
 
   <ion-content>
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <map on-create="mapCreated(map)"></map>
+    <map data-tap-disabled="true" on-create="mapCreated(map)"></map>
   </ion-content>
-
-  <!--
-  <ion-content>
-    <div class="list card" ng-repeat="location in locations"
-    type="item-text-wrap">
-      <div class="item item-divider">
-        {{location.name}}
-      </div>
-      <div class="item item-body">
-        <a nav-direction="forward"href="#/tab/locations/{{location.id}}">
-          <div>2 tasks</div>
-        </a>
-      </div>
-    </div>
-  </ion-content>
--->
 </ion-view>
