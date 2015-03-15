@@ -58,13 +58,23 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
     $state.go('tab.todos');
   };
 
-  $scope.createTodo = function(todos){
+  $scope.createTodo = function(){
     //add new todo using rest api (PUT)
+    var place = autocomplete.getPlace();
+    console.log(place.geometry.location);
+    $scope.todo.long = place.geometry.location.D;
+    $scope.todo.lat = place.geometry.location.k
     UserDoc.create($scope.todo);
     $scope.todos.push($scope.todo);
     //update scope of parent somehow
     $state.go('tab.todos');
   };
+
+  var input = document.getElementById('searchBar');
+  var options = {
+    types: ['geocode']
+  };
+  autocomplete = new google.maps.places.Autocomplete(input, options);
 
 })
 
