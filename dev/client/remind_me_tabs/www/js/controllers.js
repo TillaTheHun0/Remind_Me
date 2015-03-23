@@ -5,18 +5,35 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
   //to use locally stored username
   $scope.todos = todos;
 
+  /*
+  $scope.todos = [];
+  $scope.completed = [];
+  todos.forEach(function(todo){
+    if(todo.completed) {
+      $scope.completed.push(todo);
+      console.log(todo.task + " added to complete");
+    }
+    else {
+      $scope.todos.push(todo);
+      console.log(todo.task + "added to todos");
+    }
+  })
+  */
+
+
   $scope.create = function(){
     $state.go('tab.newtodo');
   };
 
   $scope.completed = function(todo){
-      todo.completed = true;
+      todo.completed = !todo.completed;
       var id = todo._id
       //update todo on server as completed
       UserDoc.update({_id:id}, todo);
       console.log(todo.task + " marked as completed");
-      //remove from todos
+      //remove from todos array
       $scope.todos.splice($scope.todos.indexOf(todo), 1);
+      $scope.completed.push(todo);
   };
 
   $scope.remove = function(todo){
@@ -60,10 +77,13 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
 
   $scope.createTodo = function(){
     //add new todo using rest api (PUT)
+    //get placeDetail object from autocomplete bar
     var place = autocomplete.getPlace();
-    console.log(place.geometry.location);
+    //console.log(place.geometry.location);
+    //set long and lat
     $scope.todo.long = place.geometry.location.D;
     $scope.todo.lat = place.geometry.location.k
+    //create new todo
     UserDoc.create($scope.todo);
     $scope.todos.push($scope.todo);
     //update scope of parent somehow

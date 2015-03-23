@@ -24,17 +24,15 @@
             of app icon or something-->
         <img ng-src="https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png">
         <h2>{{todo.task}}</h2>
-        <p>{{todo.time}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
     </ion-list>
   </ion-content>
 
   <!-- bar that always displays at bottom -->
   <ion-footer-bar>
     <div class= "button-bar">
-      <button
-      class="button button-clear button-positive">
+      <button ng-click="showCompleted = !showCompleted"
+        class="button button-clear button-positive">
         Show Completed
       </button>
     </div>
