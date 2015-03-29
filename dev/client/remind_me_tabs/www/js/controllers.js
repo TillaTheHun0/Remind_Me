@@ -46,15 +46,9 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
 
 .controller('TodoDetailCtrl', function($scope, $location) {
   $scope.todo = todo;
-
   //date is sent from server as string
   //so must convert to date for displaying
   //$scope.date = new Date(todo.date);
-
-  $scope.edit = function(){
-    console.log($location.path() + '/edit')
-    $location.path($location.path() + '/edit');
-  }
 })
 
 .controller('NewTodoCtrl', function($scope, $state, UserDoc){//inject service

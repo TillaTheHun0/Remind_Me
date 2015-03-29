@@ -1,13 +1,6 @@
 <ion-view view-title="{{todo.task}}">
   <ion-nav-buttons side= "right">
-    <button ng-hide= "editEnabled"
-            class= "button button-clear"ng-click="editEnabled = !editEnabled">
-      Edit
-    </button>
-    <button ng-show= "editEnabled"
-            class= "button button-clear"ng-click="editEnabled = !editEnabled">
-      Save
-    </button>
+
   </ion-nav-buttons>
 
   <ion-content>
@@ -15,7 +8,7 @@
       <div class="item item-avatar">
         <img src="https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png">
         <input ng-model="todo.task">
-        <input type="datetime"ng-model="todo.date">
+        <input type="datetime" ng-model="todo.date">
       </div>
 
       <div class="item item-body">
@@ -26,5 +19,6 @@
     {{todo.completed}}
     {{todo.loc.lat}}
     {{todo.loc.long}}
+    {{todo.date}}
   </ion-content>
 </ion-view>
