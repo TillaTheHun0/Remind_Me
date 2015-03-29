@@ -77,16 +77,16 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
 
   $scope.createTodo = function(){
     //add new todo using rest api (PUT)
-    //get placeDetail object from autocomplete bar
-    var place = autocomplete.getPlace();
-    //console.log(place.geometry.location);
-    //set long and lat
-    $scope.todo.long = place.geometry.location.D;
-    $scope.todo.lat = place.geometry.location.k
+    if($scope.addLocation){
+      //get placeDetail object from autocomplete bar
+      var place = autocomplete.getPlace();
+      //set long and lat
+      $scope.todo.long = place.geometry.location.D;
+      $scope.todo.lat = place.geometry.location.k
+    }
     //create new todo
     UserDoc.create($scope.todo);
     $scope.todos.push($scope.todo);
-    //update scope of parent somehow
     $state.go('tab.todos');
   };
 

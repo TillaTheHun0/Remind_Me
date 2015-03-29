@@ -7,26 +7,33 @@
   </ion-nav-buttons>
 
   <ion-content class = "padding">
-      <ion-list>
-        <ion-item class= "item-divider"></ion-item>
+      <div class= "item item-divider"></div>
 
-        <ion-item class="item-input">
-          <input type="text" placeholder="Task" ng-model="todo.task">
-        </ion-item>
-        <ion-item class= "item-divider"></ion-item>
-
-        <ion-item class="item-icon-left">
-          <i class="icon ion-calendar"></i>
-          <span class="input-label">Date</span>
-          <input type="date" ng-model="todo.date">
-        </ion-item>
-      </ion-list>
-      <div class="item item-icon-left">
-        <i class="icon ion-map"></i>
-        <ion-toggle ng-model="addLocation" toggle-class="toggle-info">
-          Location
-        </ion-toggle>
+      <div class= "item item-input">
+        <input type="text" placeholder="Task" ng-model="todo.task">
       </div>
+      <div class= "item item-divider"></div>
+      <ion-toggle class = "item item-icon-left" ng-model="addDay"
+                  toggle-class="toggle-info">
+        <i class="icon ion-calendar"></i>
+        Remind On A Day
+      </ion-toggle>
+      <div class = "item item-input" ng-show="addDay">
+        <input type="date" ng-model="todo.date">
+      </div>
+      <ion-toggle class = "item item-icon-left" ng-show="addDay" ng-model="addTime"
+                  toggle-class="toggle-info">
+        <i class="icon ion-clock"></i>
+        Remind At A Time
+      </ion-toggle>
+      <div class = "item item-input" ng-show="addDay && addTime">
+        <input type="time" ng-model="todo.date">
+      </div>
+      <ion-toggle class="item item-icon-left" ng-model="addLocation"
+                  toggle-class="toggle-info">
+        Location
+        <i class="icon ion-map"></i>
+      </ion-toggle>
       <!--toggles for location-->
       <div class = "item item-input" ng-show="addLocation">
         <!--Places Search Bar-->
@@ -34,17 +41,17 @@
         <input id="searchBar" type="text" placeholder="Search">
       </div>
       <div class= "item item-divider"></div>
-      <div class= "item">
-          <ion-toggle ng-model="todo.push_notif" toggle-class="toggle-info">
-            Push Notification
-          </ion-toggle>
-      </div>
+      <ion-toggle class="item" ng-model="todo.push_notif" toggle-class="toggle-info">
+        Push Notification
+      </ion-toggle>
       <div>
         <button ng-click="createTodo()"
         class="button button-block button-positive">
           Create
         </button>
       </div>
+      {{addLocation}}
+      {{todo.date}}
   </ion-content>
 
 </ion-view>
