@@ -26,6 +26,9 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
   };
 
   $scope.completed = function(todo){
+    /*
+    this guy needs some work
+    */
       todo.completed = !todo.completed;
       var id = todo._id
       //update todo on server as completed
@@ -56,13 +59,15 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
   $scope.todo = {
     task:'',
     date: '',
+    created: '',
     long: '35',
     lat: '35',
     completed: false,
     push_notif: false
   };
 
-  $scope.addLocation = false;
+  //$scope.addLocation = false;
+
 
   $scope.close = function(){
     //ad logic if stuff was entered to ask 'are you sure?'
@@ -89,7 +94,6 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
     types: ['geocode']
   };
   autocomplete = new google.maps.places.Autocomplete(input, options);
-
 })
 
 .controller('MapCtrl', function($scope, $ionicLoading) {
