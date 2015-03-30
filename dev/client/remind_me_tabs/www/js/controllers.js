@@ -30,9 +30,9 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
     this guy needs some work
     */
       todo.completed = !todo.completed;
-      var id = todo._id
+      //var id = todo._id
       //update todo on server as completed
-      UserDoc.update({_id:id}, todo);
+      UserDoc.update({created:todo.created}, todo);
       console.log(todo.task + " marked as completed");
       //remove from todos array
       $scope.todos.splice($scope.todos.indexOf(todo), 1);
@@ -40,7 +40,7 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
   };
 
   $scope.remove = function(todo){
-    console.log("about to delete " + todo._id);
+    console.log("about to delete " + todo.created);
     UserDoc.remove(todo);
     $scope.todos.splice($scope.todos.indexOf(todo), 1);
   };
@@ -84,6 +84,7 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
       $scope.todo.lat = place.geometry.location.k
     }
     //create new todo
+    $scope.todo.created = new Date().getTime();
     UserDoc.create($scope.todo);
     $scope.todos.push($scope.todo);
     $state.go('tab.todos');

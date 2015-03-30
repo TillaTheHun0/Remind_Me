@@ -12,7 +12,7 @@
   <ion-content>
     <ion-list can-swipe"listCanSwipe">
       <ion-item class="item-remove-animate item-avatar item-icon-right"
-      ng-repeat= "todo in todos" href="#/tab/todos/{{todo._id}}">
+      ng-repeat= "todo in todos" href="#/tab/todos/{{todo.created}}">
 
         <ion-option-button class="button-info" ng-click="remove(todo)">
           <i class="icon assertive ion-close-round"></i>
