@@ -60,28 +60,39 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
     task:'',
     date: '',
     created: '',
-    long: '35',
-    lat: '35',
+    loc: {
+      long: '35',
+      lat: '35',
+    },
     completed: false,
     push_notif: false
   };
 
-  //$scope.addLocation = false;
-
+  $scope.disableTap = function(){
+    container = document.getElementsByClassName('pac-container');
+    // disable ionic data tab
+    angular.element(container).attr('data-tap-disabled', 'true');
+    // leave input field if google-address-entry is selected
+    angular.element(container).on("click", function(){
+        document.getElementById('searchBar').blur();
+    });
+  }
 
   $scope.close = function(){
     //ad logic if stuff was entered to ask 'are you sure?'
     $state.go('tab.todos');
   };
 
-  $scope.createTodo = function(){
+  $scope.createTodo = function(addLocation){
     //add new todo using rest api (PUT)
-    if($scope.addLocation){
+    if(addLocation){
+      console.log("adding place");
       //get placeDetail object from autocomplete bar
       var place = autocomplete.getPlace();
       //set long and lat
-      $scope.todo.long = place.geometry.location.D;
-      $scope.todo.lat = place.geometry.location.k
+      $scope.todo.loc.long = place.geometry.location.D;
+      $scope.todo.loc.lat = place.geometry.location.k;
+      console.log($scope.todo.loc.long + ' ' + $scope.todo.loc.lat);
     }
     //create new todo
     $scope.todo.created = new Date().getTime();

@@ -38,14 +38,14 @@
       <div class = "item item-input" ng-show="addLocation">
         <!--Places Search Bar-->
         <i class="icon ion-search placeholder-icon"></i>
-        <input id="searchBar" type="text" placeholder="Search">
+        <input id="searchBar" type="text" placeholder="Search" ng-focus="disableTap()">
       </div>
       <div class= "item item-divider"></div>
       <ion-toggle class="item" ng-model="todo.push_notif" toggle-class="toggle-info">
         Push Notification
       </ion-toggle>
       <div>
-        <button ng-click="createTodo()"
+        <button ng-click="createTodo(addLocation)"
         class="button button-block button-positive">
           Create
         </button>
