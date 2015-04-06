@@ -87,18 +87,6 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
     }
   })
 
-/*
-  .state('tab.todo-edit', {
-    url: '/todos/:_id/edit',
-    views: {
-      'tab-todos': {
-        templateUrl: 'templates/todo-edit.html',
-        controller: 'TodoEditCtrl'
-      }
-    }
-  })
-  */
-
   .state('tab.location', {
       url: '/locations',
       views: {
