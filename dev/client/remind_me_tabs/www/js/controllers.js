@@ -112,6 +112,10 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
   $scope.mapCreated = function(map) {
     console.log("Map Created");
     $scope.map = map;
+    if($scope.todo){
+      console.log("todo is present");
+      $scope.centerOn();
+    }
   };
 
   $scope.centerOnMe = function () {
@@ -133,6 +137,23 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
     }, function (error) {
       alert('Unable to get location: ' + error.message);
     });
+  };
+
+  $scope.centerOn = function() {
+    console.log("Centering");
+    if (!$scope.map) {
+      return;
+    }
+
+    $scope.loading = $ionicLoading.show({
+      content: 'Getting current location...',
+      showBackdrop: false
+    });
+
+    $scope.map.setCenter(new google.maps.LatLng(
+                          $scope.todo.loc.lat, $scope.todo.loc.long));
+    $ionicLoading.hide();
+
   };
 })
 /*

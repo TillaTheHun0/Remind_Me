@@ -1,4 +1,4 @@
-<ion-view view-title="{{todo.task}}">
+<ion-view ng-controller="MapCtrl" view-title="{{todo.task}}">
   <ion-nav-buttons side= "right">
 
   </ion-nav-buttons>
@@ -10,15 +10,13 @@
         <input ng-model="todo.task">
         <input type="datetime" ng-model="todo.date">
       </div>
-
-      <div class="item item-body">
-        <!--display map here of location -->
-      </div>
     </div>
-    <!--display map here of location -->
+    <map data-tap-disabled="true" on-create="mapCreated(map)"></map>
+    <!--display map here of location
     {{todo.completed}}
     {{todo.loc.lat}}
     {{todo.loc.long}}
     {{todo.date}}
+    -->
   </ion-content>
 </ion-view>
