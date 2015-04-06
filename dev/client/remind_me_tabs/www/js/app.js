@@ -96,15 +96,6 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
         }
       }
     })
-    .state('tab.location-detail', {
-      url: '/locations/:locationId',
-      views: {
-        'tab-locations': {
-          templateUrl: 'templates/location-detail.html',
-          controller: 'FriendDetailCtrl'
-        }
-      }
-    })
 
   .state('tab.account', {
     url: '/account',
