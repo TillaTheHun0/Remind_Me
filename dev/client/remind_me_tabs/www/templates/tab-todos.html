@@ -1,6 +1,5 @@
 <!-- each page must have view -->
-<ion-view view-title="Todo">
-
+<ion-view view-title="{{user}}'s Todos">
   <!-- nav bar button -->
   <ion-nav-buttons side= "right">
     <button class= "button button-clear icon ion-ios7-plus-empty"
@@ -10,9 +9,25 @@
 
   <!-- content for todos -->
   <ion-content>
-    <ion-list can-swipe"listCanSwipe">
+    <ion-list ng-hide="showCompleted" can-swipe"listCanSwipe">
       <ion-item class="item-remove-animate item-avatar item-icon-right"
-      ng-repeat= "todo in todos" href="#/tab/todos/{{todo.created}}">
+      ng-repeat= "todo in todos | filter:{completed: false}" href="#/tab/todos/{{todo.created}}">
+
+        <ion-option-button class="button-info" ng-click="remove(todo)">
+          <i class="icon assertive ion-close-round"></i>
+        </ion-option-button>
+        <ion-option-button ng-click="completed(todo)">
+          <i class="icon positive ion-checkmark-circled"></i>
+        </ion-option-button>
+        <!--dummy image. eventually have image in databse and defult image
+            of app icon or something-->
+        <img ng-src="https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png">
+        <h2>{{todo.task}}</h2>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+    </ion-list>
+    <ion-list ng-show="showCompleted" can-swipe"listCanSwipe">
+      <ion-item class="item-remove-animate item-avatar item-icon-right"
+      ng-repeat= "todo in todos | filter:{completed: true}" href="#/tab/todos/{{todo.created}}">
 
         <ion-option-button class="button-info" ng-click="remove(todo)">
           <i class="icon assertive ion-close-round"></i>
@@ -31,9 +46,13 @@
   <!-- bar that always displays at bottom -->
   <ion-footer-bar>
     <div class= "button-bar">
-      <button ng-click="showCompleted = !showCompleted"
+      <button ng-hide="showCompleted" ng-click="showCompleted = !showCompleted"
         class="button button-clear button-positive">
         Show Completed
+      </button>
+      <button ng-show="showCompleted" ng-click="showCompleted = !showCompleted"
+        class="button button-clear button-positive">
+        Show Todos
       </button>
     </div>
   </ion-footer-bar>

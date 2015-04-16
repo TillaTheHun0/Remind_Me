@@ -1,23 +1,69 @@
 angular.module('RemindMe.controllers', ['RemindMe.services'])
 
-.controller('TodosCtrl', ['$scope', '$state', 'UserDoc', function($scope, $state, UserDoc){
+.controller('LoginCtrl', function($scope, $state, LoginData){
+  console.log("controller initializing");
+
+  $scope.info = {
+    username: "",
+    password: ""
+  };
+
+  $scope.login = function() {
+      console.log("Logging In");
+      LoginData.set($scope.info.username, $scope.info.password);
+       //window.localStorage.setItem("username", $scope.info.username);
+       //window.localStorage.setItem("password", $scope.info.password);
+       $state.go('tab.todos');
+   };
+
+   $scope.signup = function(){
+     $state.go('signup');
+   };
+})
+
+.controller('SignupCtrl', function($scope, $state, $ionicLoading, UsersCol, LoginData){
+  $scope.info = {
+    username: '',
+    password: ''
+  };
+
+  //must fix this
+  $scope.createAccount = function(){
+    $scope.show = function() {
+      $ionicLoading.show({
+        template: 'Setting Up Account...',
+        showBackdrop: true
+      });
+    };
+    LoginData.set($scope.info.username, $scope.info.password);
+    //window.localStorage.setItem("username", $scope.info.username);
+    //window.localStorage.setItem("password", $scope.info.password);
+    UsersCol.post({username:$scope.info.username, password:$scope.info.password}).$promise.then(function(){
+      $scope.hide = function(){$ionicLoading.hide();};
+      $state.go('tab.todos');
+    });
+  };
+})
+
+
+.controller('TodosCtrl', function($scope, $state, UserDoc, LoginData){
   //params for query. change to :username eventually
   //to use locally stored username
+  $scope.user = LoginData.getUser();
   $scope.todos = todos;
 
-  /*
-  $scope.todos = [];
+
+/*
   $scope.completed = [];
+
   todos.forEach(function(todo){
     if(todo.completed) {
       $scope.completed.push(todo);
       console.log(todo.task + " added to complete");
+      $scope.todos.splice($scope.todos.indexOf(todo), 1);
+      console.log(todo.task + "removed from todos");
     }
-    else {
-      $scope.todos.push(todo);
-      console.log(todo.task + "added to todos");
-    }
-  })
+  });
   */
 
 
@@ -33,10 +79,8 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
       //var id = todo._id
       //update todo on server as completed
       UserDoc.update({created:todo.created}, todo);
-      console.log(todo.task + " marked as completed");
+      console.log(todo.task + " marked as " + todo.completed);
       //remove from todos array
-      $scope.todos.splice($scope.todos.indexOf(todo), 1);
-      $scope.completed.push(todo);
   };
 
   $scope.remove = function(todo){
@@ -45,7 +89,7 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
     $scope.todos.splice($scope.todos.indexOf(todo), 1);
   };
 
-}])
+})
 
 .controller('TodoDetailCtrl', function($scope, $location) {
   $scope.todo = todo;
@@ -156,22 +200,19 @@ angular.module('RemindMe.controllers', ['RemindMe.services'])
 
   };
 })
-/*
-.controller('TodoEditCtrl', function($scope, $state){
-  $scope.todo = todo;
-})
-*/
 
-.controller('FriendsCtrl', function($scope, Locations) {
-  $scope.locations = Locations.all();
+.controller('LocationsCtrl', function($scope) {
+
 })
 
-.controller('FriendDetailCtrl', function($scope, $stateParams, Locations) {
-  $scope.location = Locations.get($stateParams.locationId);
-})
-
-.controller('AccountCtrl', function($scope) {
+.controller('AccountCtrl', function($rootScope, $scope, $state) {
   $scope.settings = {
     enableFriends: true
   };
+
+  $scope.logout = function(){
+    //window.localStorage.setItem("username", "");
+    //window.localStorage.setItem("password", "");
+    $state.go('login');
+  }
 });

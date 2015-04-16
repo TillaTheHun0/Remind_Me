@@ -1,16 +1,14 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
 angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services', 'RemindMe.directives'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $state, LoginData) {
+
+  //maybe have logindata recover data and broadcast ready
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    //check if user data is cached
+
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
@@ -21,14 +19,34 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
-
+.config(function($stateProvider, $urlRouterProvider, $provide) {
+  $provide.decorator('$state', function($delegate, $stateParams) {
+        $delegate.forceReload = function() {
+            return $delegate.go($delegate.current, $stateParams, {
+                reload: true,
+                inherit: false,
+                notify: true
+            });
+        };
+        return $delegate;
+  });
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+    .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl'
+    })
+
+    .state('signup', {
+      url: '/signup',
+      templateUrl: 'templates/signup.html',
+      controller: 'SignupCtrl'
+    })
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: "/tab",
@@ -39,7 +57,7 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
         return UserDoc.get().$promise;
       },
       todos: function(User){
-        todos = User.todos;
+          todos = User.todos;
       }
     },
     templateUrl: "templates/tabs.html"
@@ -92,7 +110,7 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
       views: {
         'tab-locations': {
           templateUrl: 'templates/tab-locations.html',
-          controller: 'FriendsCtrl'
+          controller: 'LocationsCtrl'
         }
       }
     })
@@ -108,5 +126,5 @@ angular.module('RemindMe', ['ionic', 'RemindMe.controllers', 'RemindMe.services'
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/todos');
+  $urlRouterProvider.otherwise('/login');
 });
